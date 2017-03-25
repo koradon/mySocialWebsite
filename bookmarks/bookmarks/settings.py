@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # other apps
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +107,23 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social.backends.facebook.Facebook20Auth2',
+    'social.backends.twitter.Twitter0Auth',
+    'social.backends.google.GoogleOAuth2',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = 'XXX'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'XXX'
+
+SOCIAL_AUTH_TWITTER = 'XXX'
+SOCIAL_AUTH_TWITTER_SECRET = 'XXX'
+
+SOCIAL_AUTH_GOOGLE_0AUTH2_KEY = 'XXX'
+SOCIAL_AUTH_GOOGLE_0AUTH2_SECRET = 'XXX'
 
 # LOGIN urls
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
