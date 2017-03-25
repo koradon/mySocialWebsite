@@ -105,6 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# LOGIN urls
+LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -125,7 +129,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# LOGIN urls
-LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
-LOGIN_URL = reverse_lazy('login')
-LOGOUT_URL = reverse_lazy('logout')
+# EMAIL settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
