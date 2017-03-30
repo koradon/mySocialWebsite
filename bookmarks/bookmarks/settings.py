@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # my apps
     'account',
+    'images',
 
     # django apps
     'django.contrib.admin',
@@ -111,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
-    'social.backends.facebook.Facebook20Auth2',
-    'social.backends.twitter.Twitter0Auth',
-    'social.backends.google.GoogleOAuth2',
+    # 'social_core.backends.facebook.Facebook20Auth2',
+    # 'social_core.backends.twitter.Twitter0Auth',
+    # 'social_core.backends.google.GoogleOAuth2',
 )
 
 SOCIAL_AUTH_FACEBOOK_KEY = 'XXX'
