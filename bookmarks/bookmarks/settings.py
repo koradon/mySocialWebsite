@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # other apps
     'social_django',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,9 @@ SOCIAL_AUTH_GOOGLE_0AUTH2_SECRET = 'XXX'
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
+
+# Sorl-thumbnail settings
+THUMBNAIL_DEBUG = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
