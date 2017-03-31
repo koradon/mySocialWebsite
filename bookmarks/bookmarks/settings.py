@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # my apps
     'account',
     'images',
+    'actions',
 
     # django apps
     'django.contrib.admin',

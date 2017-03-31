@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 
 from common.decorators import ajax_required
+from actions.utils import create_action
+from actions.models import Action
 
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile, Contact
@@ -15,9 +17,17 @@ from .models import Profile, Contact
 # Create your views here.
 @login_required
 def dashboard(request):
+    actions = Action.objects.exclude(user=request.user)
+
+    following_ids = request.user.following.values_list('id', flat=True)
+    if following_ids:
+        actions = actions.filter(user_id__in=following_ids)\
+            .select_related('user', 'user__profile')\
+            .prefetch_related('target')[:10]
 
     context = {
-        'section': 'dashboard'
+        'section': 'dashboard',
+        'actions': actions,
     }
 
     return render(request,
@@ -61,6 +71,7 @@ def register(request):
             new_user.save()
 
             profile = Profile.objects.create(user=new_user)
+            create_action(new_user, 'has created an account')
 
             return render(request,
                           'account/register_done.html',
@@ -144,7 +155,7 @@ def user_follow(request):
             if action == 'follow':
                 Contact.objects.get_or_create(user_from=request.user,
                                               user_to=user)
-                # create_action(request.user, 'is following', user)
+                create_action(request.user, 'is following', user)
             else:
                 Contact.objects.filter(user_from=request.user,
                                        user_to=user).delete()
