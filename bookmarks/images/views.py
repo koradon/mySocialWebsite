@@ -104,4 +104,4 @@ def image_like(request):
         except:
             pass
 
-    return JsonResponse({'status': 'ok'})
+    return JsonResponse({'status': 'ko'})

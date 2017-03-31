@@ -14,12 +14,9 @@ class Profile(models.Model):
 
 
 class Contact(models.Model):
-    user_form = models.ForeignKey(User,
-                                  related_name='rel_from_set')
-    user_to = models.ForeignKey(User,
-                                related_name='rel_to_set')
-    created = models.DateTimeField(auto_now=True,
-                                   db_index=True)
+    user_from = models.ForeignKey(User, related_name='rel_from_set')
+    user_to = models.ForeignKey(User, related_name='rel_to_set')
+    created = models.DateTimeField(auto_now=True, db_index=True)
 
     class Meta:
         ordering = ('-created',)
